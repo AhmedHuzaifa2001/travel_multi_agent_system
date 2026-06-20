@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: multi-agent-travel-system-langgraph
+Version: 0.1.0
+Summary: Multi-agent travel system using LangGraph and LangChain
+Author: HUZAIFA
+Requires-Python: >=3.9
+Requires-Dist: langgraph
+Requires-Dist: langchain
+Requires-Dist: langchain-openai
+Requires-Dist: langchain-groq
+Requires-Dist: langchain-community
+Requires-Dist: langchain-tavily
+Requires-Dist: psycopg[binary]
+Requires-Dist: psycopg_pool
+Requires-Dist: python-dotenv
+Requires-Dist: tavily-python
+Requires-Dist: requests
+Requires-Dist: streamlit

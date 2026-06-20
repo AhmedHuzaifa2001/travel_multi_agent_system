@@ -1,0 +1,21 @@
+[project]
+name = "multi-agent-travel-system-langgraph"
+version = "0.1.0"
+description = "Multi-agent travel system using LangGraph and LangChain"
+authors = [{ name = "HUZAIFA" }]
+dependencies = [
+    "langgraph",
+    "langchain",
+    "langchain-openai",
+    "langchain-groq",
+    "langchain-community",
+    "langchain-tavily",
+    "psycopg[binary]",
+    "psycopg_pool",
+    "python-dotenv",
+    "tavily-python",
+    "requests",
+    "streamlit"
+]
+
+requires-python = ">=3.9"
