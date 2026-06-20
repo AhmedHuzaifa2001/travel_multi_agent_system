@@ -5,6 +5,7 @@ Summary: Multi-agent travel system using LangGraph and LangChain
 Author: HUZAIFA
 Requires-Python: >=3.9
 Requires-Dist: langgraph
+Requires-Dist: langgraph-checkpoint-postgres
 Requires-Dist: langchain
 Requires-Dist: langchain-openai
 Requires-Dist: langchain-groq

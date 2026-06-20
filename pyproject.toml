@@ -5,6 +5,7 @@ description = "Multi-agent travel system using LangGraph and LangChain"
 authors = [{ name = "HUZAIFA" }]
 dependencies = [
     "langgraph",
+    "langgraph-checkpoint-postgres",
     "langchain",
     "langchain-openai",
     "langchain-groq",
