@@ -11,3 +11,4 @@ python-dotenv
 tavily-python
 requests
 streamlit
+langchain-mcp-adapters

@@ -3,7 +3,6 @@ Name: multi-agent-travel-system-langgraph
 Version: 0.1.0
 Summary: Multi-agent travel system using LangGraph and LangChain
 Author: HUZAIFA
-Requires-Python: >=3.9
 Requires-Dist: langgraph
 Requires-Dist: langgraph-checkpoint-postgres
 Requires-Dist: langchain
@@ -17,3 +16,4 @@ Requires-Dist: python-dotenv
 Requires-Dist: tavily-python
 Requires-Dist: requests
 Requires-Dist: streamlit
+Requires-Dist: langchain-mcp-adapters
