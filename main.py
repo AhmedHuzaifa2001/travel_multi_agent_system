@@ -1,7 +1,10 @@
 import os
 from typing import TypedDict, Annotated
 import operator
-
+from nodes.flight_node import *
+from nodes.hotel_agent_node import *
+from nodes.itenary_node import *
+from nodes.final_agent_node import *
 import psycopg
 from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.postgres import PostgresSaver
@@ -27,6 +30,54 @@ llm = ChatGroq(
 )
 
 
-## Define the state
-state = TravelState()
+## Define the graph
+graph_builder = StateGraph(TravelState)
 
+
+graph_builder.add_node("flight_node", flight_agent)
+graph_builder.add_node("hotel_node", hotel_agent)
+graph_builder.add_node("itenary_node", itinerary_agent)
+graph_builder.add_node("final_node", final_agent)
+
+
+graph_builder.add_edge(START , "flight_node")
+graph_builder.add_edge("flight_node" , "hotel_node")
+graph_builder.add_edge("hotel_node" , "itenary_node")
+graph_builder.add_edge("itenary_node" , "final_node")
+graph_builder.add_edge("final_node" , END)
+
+
+conn = psycopg.connect(DB_URL, autocommit=True)
+checkpointer = PostgresSaver(conn)
+checkpointer.setup()
+
+
+app = graph_builder.compile(checkpointer=checkpointer)
+
+if __name__ == "__main__":
+    config = {
+        "configurable": {
+            "thread_id": "user_huzaifa"
+        }
+    }
+
+    user_input = input("Enter travel request: ")
+
+    result = app.invoke(
+        {
+            "messages": [
+                HumanMessage(content=user_input)
+            ],
+            "user_query": user_input,
+            "flight_results": "",
+            "hotel_results": "",
+            "itinerary": "",
+            "llm_calls": 0
+        },
+        config=config
+    )
+
+    print("\nFINAL RESPONSE:\n")
+
+    for msg in result["messages"]:
+        print(msg.content)
